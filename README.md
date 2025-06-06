@@ -1,194 +1,126 @@
-# 🌍 City Fact Extractor
+# 🌍 Extract City Facts App
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)  
-![License](https://img.shields.io/badge/license-MIT-blue)  
-![Version](https://img.shields.io/badge/version-1.0.0-blueviolet)
+## Overview
 
----
+**Extract City Facts App** is an AI-powered workflow that takes Wikipedia summaries of cities and produces **witty, poetic, or formal** fun facts. Powered by prompt engineering and YAML-based agent orchestration, this app demonstrates how to use AI for creative data extraction and personalized content generation.
 
-## 🧠 Description
-
-**City Fact Extractor** is an AI-powered application that transforms plain Wikipedia city summaries into quirky, culturally interesting facts. Whether you're a trivia enthusiast, app developer, or travel lover, this tool adds flair and fun to your city data.
-
-Choose from different styles like **funny**, **poetic**, or **formal**, and even personalize the output with your name!
+This project uses a modular structure of AI agents and input-output workflows. It's perfect for exploring LLM orchestration, persona-based generation, and creative use of AI.
 
 ---
 
-## ✨ Features
+## 🎯 Purpose
 
-- 🎯 Extracts **exactly 3 quirky or culturally interesting facts** per city.
-- 🌐 Supports **multiple cities** in one query.
-- 🎭 Outputs in various styles: *funny*, *poetic*, or *formal*.
-- 💡 Appends a **"Did you know?"** fact per city.
-- 🙋 Personalized greetings when a **user name** is provided.
-- 🧩 Built on an **AI agent-based** architecture using inline YAML-style configuration logic.
+This app was created to:
 
----
-
-## 🚀 Installation
-
-### 🔧 Prerequisites
-
-- Python 3.8+
-- [Docker](https://www.docker.com/get-started) *(optional for containerized deployment)*
-- EC2 or local machine (Ubuntu/Windows/Linux)
+- Practice **prompt engineering**, **persona design**, and **context-aware generation**
+- Extract **fun, quirky, or surprising facts** about cities
+- Showcase how **multi-step AI agents** can work together in a pipeline
+- Enable **custom output styles** like funny, poetic, or formal
 
 ---
 
-## 📦 Setup Instructions
+## 🚀 Key Features
 
-1. **Clone the Repository**
-   
-   git clone https://github.com/yourusername/city-fact-extractor.git
-   cd city-fact-extractor
-Create and Activate a Virtual Environment (optional but recommended)
+- ✅ **Multi-City Support**: Processes multiple cities and summaries in one go  
+- 🧠 **Witty AI Agent**: Extracts facts with personality (poetic, funny, or formal tone)  
+- 🛠️ **Composable YAML Agents**: Cleanly defined inputs, steps, and outputs  
+- 🔄 **Loop-Based Processing**: Uses `foreach` to iterate over cities dynamically  
+- 🎁 **Bonus Fact**: Each city includes a unique "Did you know?" surprise!  
 
+---
 
-python -m venv venv
-source venv/bin/activate        # On Windows: venv\Scripts\activate
-Install Dependencies
-(Add any specific libraries your project uses)
+## 🧑‍💻 How It Works
 
-pip install -r requirements.txt
-Set Environment Variables (optional, see below)
+1. **Input**: A list of cities and their Wikipedia summaries  
+2. **Agent Loop**: For each city, an AI agent (`city-fact-agent`) is called  
+3. **Fact Generation**: The agent extracts 3 quirky facts + 1 bonus "Did you know?" fact  
+4. **Output**: Returns a map of city → list of fun facts
 
-Run the Script
+---
 
+## 🧱 Technologies Used
 
-python run_extract_facts.py --input inputs.yaml
+- 🧾 **YAML**: For defining structured agents and workflows  
+- 🤖 **Meta LLaMA 4 - Maverick (Free)**: Model used via OpenRouter  
+- ⚙️ **Prompt Engineering**: Custom instructions and multi-style output  
+- 🪄 **Persona Design**: Witty assistant that adapts to user inputs  
+- ☁️ **EC2 Ubuntu**: Deployment-ready on cloud (instructions included)
 
+---
 
-⚙️ Usage
+## ⚙️ Inputs & Customization
 
-inputs = {
-    "cities": ["Paris", "Tokyo"],
-    "summaries": {
-        "Paris": "Paris is the capital of France, known for the Eiffel Tower, cafes, and rich culture.",
-        "Tokyo": "Tokyo is the capital of Japan, famous for its skyscrapers, technology, and cherry blossoms."
-    },
-    "style": "funny",  # Options: "funny", "poetic", "formal"
-    "username": "Ansh"  # Optional
-}
+- **cities**: List of city names  
+- **summaries**: Map of city → Wikipedia summary  
+- **style** (optional): `poetic`, `funny`, or `formal`  
+- **user_name** (optional): Personalized greeting support  
 
-{
-  "Paris": {
-    "greeting": "Hey Ansh! Ready for some quirky Paris facts?",
-    "facts": [
-      "Paris once had a law allowing men to pee in the streets — classically French!",
-      "The Eiffel Tower grows in summer – about 6 inches due to heat!",
-      "French bread has legal requirements — even in how it's baked!",
-      "Did you know? There's only one stop sign in all of Paris!"
-    ]
-  },
-  "Tokyo": {
-    "greeting": "Hey Ansh! Here’s what’s buzzing in Tokyo!",
-    "facts": [
-      "Tokyo has vending machines for everything — including eggs and umbrellas!",
-      "It's illegal to dance past midnight — well, it was until 2015!",
-      "Shibuya Crossing sees more foot traffic than Times Square!",
-      "Did you know? Tokyo has more Michelin stars than any city in the world!"
-    ]
-  }
-}
-🧩 Internal Configuration (No YAML Files Needed)
-The logic mimics agent/task architecture using inline configurations like:
+---
 
+## 🌐 Live Demo (Coming Soon!)
 
-agent_config = {
-    "goal": "Extract quirky, engaging facts about a city from its summary.",
-    "style_options": ["funny", "poetic", "formal"],
-    "tasks": [
-        "Extract 3 unique facts from the summary",
-        "Add 1 extra 'Did you know?' style fact",
-        "Format output in the chosen style"
-    ]
-}
-🔐 Environment Variables (Optional)
-If you're using external APIs like OpenRouter or deploying via AWS, set these:
+Stay tuned for the live demo or host it using your preferred YAML orchestration engine. You can simulate inputs using Julep, LangChain, or local agents.
 
-Variable	Description	Example
-OPENROUTER_API_KEY	API key for OpenRouter AI model	abcdef123456
-AWS_ACCESS_KEY_ID	AWS credentials for EC2 access	AKIAIOSFODNN7EXAMPLE
-AWS_SECRET_ACCESS_KEY	AWS secret access key	wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+---
 
-Set them in .env or directly in your terminal.
+## 📸 Example Output
 
-🧪 Sample Output (Funny Style)
-text
-Copy code
-City: Paris
+### **Paris**
+- The Eiffel Tower was originally painted red.
+- Paris has a vineyard in Montmartre.
+- It’s illegal to name a pig ‘Napoleon’ in France.  
+**Did you know?** Paris has more dogs than children!
 
-Hey Ansh! Ready for some quirky Paris facts?
+---
 
-1. Paris once had a law allowing men to pee in the streets — classically French!
-2. The Eiffel Tower grows in summer – about 6 inches due to heat!
-3. French bread has legal requirements — even in how it's baked!
-Did you know? There's only one stop sign in all of Paris!
-🧰 Technologies Used
-Python for logic and processing
+### **Tokyo**
+- Tokyo has cafes where you can cuddle hedgehogs.
+- It has more Michelin-starred restaurants than any city in the world.
+- There are vending machines that sell fresh eggs.  
+**Did you know?** Tokyo has a museum entirely dedicated to parasites!
 
-OpenRouter / Meta LLaMA for language model API
+  ## 📁 Project Structure
 
-Wikipedia as the data source
+![image](https://github.com/user-attachments/assets/2c42d816-afc1-45f2-b2bc-48fdcf8d5f3d)
 
-Docker (optional) for containerization
+## 🖥️ Deployment Guide (EC2)
 
-Amazon EC2 for deployment (optional)
+Follow these steps to deploy the project on an **Ubuntu EC2 instance** (e.g., `t2.micro`):
 
-Inline configuration (no external YAML files required)
+### 1️⃣ Launch EC2 Instance
 
-📸 Screenshots / Demo
-(You can add screenshots or screen recordings here once available)
+- Go to AWS EC2 Console.
+- Launch a `t2.micro` instance with the **Ubuntu** AMI.
 
-🧪 Running Tests
-If you have test scripts, run:
+### 2️⃣ Connect via SSH
+
+- Open your terminal and connect to the instance:.
+- ssh -i your-key.pem ubuntu@your-ec2-ip.
+
+### 3️⃣ Install Required Dependencies
+
+- Update your package list and install Python, pip, and any other necessary tools:
+- sudo apt update
+- sudo apt install python3 python3-pip
 
 
-pytest tests/
-Or use your own test runner.
+## ✨ Customization Options
 
-🤝 Contributing
-We welcome contributions!
+- **Personalized Greeting:** Add the `user_name` input to receive a warm, customized welcome.
+- **Tone Styling:** Change the `style` input to:
+  - `funny` – for a humorous tone
+  - `poetic` – for an artistic tone
+  - `formal` – for a polished, professional tone
+- **Extendability:** You can create and plug in new agent types for different domains such as:
+  - Food-related fun facts
+  - Historical trivia
+  - Cultural insights
+## 👤 Author
 
-Fork the repository
-
-Create a new branch:
-
-
-git checkout -b feature-name
-
-Make changes and commit:
-git commit -m "Added new feature"
-Push and create a Pull Request:
+**Ansh Tiwari**  
+📧 Email: [anshtest013@gmail.com](mailto:anshtest013@gmail.com)  
+🔗 LinkedIn: [linkedin.com/in/ansh-tiwari-577a72246](https://www.linkedin.com/in/ansh-tiwari-577a72246/)  
+💻 GitHub: [github.com/AnshT013](https://github.com/AnshT013)
 
 
-git push origin feature-name
-Please follow the project’s style and include tests if applicable.
 
-📜 License
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
-❓ FAQ
-Q: Can I add more output styles like sarcastic or romantic?
-A: Yes, just add the style option in the input and modify the logic to reflect tone.
-
-Q: How do I add more cities?
-A: Extend the cities list and add corresponding summaries in the summaries dictionary.
-
-Q: Is this scalable for many cities at once?
-A: Yes, but be mindful of API rate limits and consider batching requests for best performance.
-
-📬 Contact
-Ansh Tiwari
-📧 Email: tiwariansh1308@gmail.com
-💻 GitHub: AnshT013
-🔗 LinkedIn: Ansh Tiwari
-
-🙏 Acknowledgements
-🧠 Wikipedia for open access to city data
-
-🤖 OpenRouter for natural language generation
-
-🔧 Inspired by Julep Agent-based workflow
-
-🙌 Thanks to the open-source community!
