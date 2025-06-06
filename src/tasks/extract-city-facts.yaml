@@ -1,0 +1,36 @@
+# src/tasks/extract-city-facts.yaml
+name: extract-city-facts
+description: Extract 5 interesting facts for each city using Wikipedia summaries.
+
+agent_id: city-fact-agent
+
+inputs:
+  - name: cities
+    type: list
+    items:
+      type: string
+  - name: summaries 
+    type: map
+    keys:
+      type: string
+    values:
+      type: string
+
+steps:
+  - foreach: ${inputs.cities}
+    as: city
+    do:
+      call: city-fact-agent
+      args:
+        city: ${city}
+        summary: ${inputs.summaries[city]}
+      result: ${city}_facts
+
+output:
+  type: map
+  keys:
+    type: string
+  values:
+    type: list
+    items:
+      type: string

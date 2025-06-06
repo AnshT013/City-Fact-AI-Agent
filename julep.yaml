@@ -1,0 +1,20 @@
+# # julep.yaml
+# name: city-fact-agent
+# description: Extract quirky, interesting facts about cities using Wikipedia and Julep AI agents.
+
+# goals:
+#   - name: City Fact Collector
+#     description: Extract 3 interesting or quirky facts from a city`s Wikipedia summary.
+#     agent: city-fact-agent
+#     task: extract-city-facts
+
+
+name: city-fact-project
+description: Extracts quirky facts about cities from Wikipedia summaries.
+
+goals:
+  - agents:
+      - definition: src/agents/city-fact-agent.yaml
+
+    tasks:
+      - definition: src/tasks/extract-city-facts.yaml
