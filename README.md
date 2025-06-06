@@ -118,7 +118,7 @@ Follow these steps to deploy the project on an **Ubuntu EC2 instance** (e.g., `t
 ## 👤 Author
 
 **Ansh Tiwari**  
-📧 Email: [anshtest013@gmail.com](mailto:anshtest013@gmail.com)  
+📧 Email: [tiwariansh1308@@gmail.com](mailto:tiwariansh1308@gmail.com)  
 🔗 LinkedIn: [linkedin.com/in/ansh-tiwari-577a72246](https://www.linkedin.com/in/ansh-tiwari-577a72246/)  
 💻 GitHub: [github.com/AnshT013](https://github.com/AnshT013)
 
